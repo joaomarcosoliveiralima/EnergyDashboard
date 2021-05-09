@@ -28,5 +28,9 @@
         <file>Pages/Dashboard.qml</file>
         <file>Pages/Lighting.qml</file>
         <file>Pages/Weather.qml</file>
+        <file>icons/menu_white_48dp.svg</file>
+        <file>Ionicons/ionicons.js</file>
+        <file>Ionicons/ionicons.ttf</file>
+        <file>Ionicons/README.md</file>
     </qresource>
 </RCC>

@@ -9,6 +9,8 @@ import "./Pages"
 import "./Components"
 import "FontAwesome"
 import "FontWeather"
+import "./Ionicons/ionicons.js" as Ionicons
+
 
 ApplicationWindow {
     /**
@@ -32,13 +34,15 @@ ApplicationWindow {
 
     property int minHeightDashboardItem: 300
     property int minHeightToolbar: 68
+    property int sizePerfilCircleIn: 65
+    property int sizePerfilCircleOut: 75
     property int maxWidthDrawerItem: 350
     property int spaceCell: 5
     property int appWidth: 1300//Screen.width
     property int appHeight: 800//Screen.height
-    property real toolBarHeight: 68//Screen.height
+    property int toolBarHeight: 68//Screen.height
     property int dividerHeight: 2//Screen.height
-    property int toolBarOnDrawerHeight: 120//Screen.height
+    property int toolBarOnDrawerHeight: 100//Screen.height
 
     id: window
     width: appWidth
@@ -64,6 +68,12 @@ ApplicationWindow {
         source: "qrc:/FontWeather/weathericons-regular-webfont.ttf"
     }
 
+    FontLoader {
+        id: ioniconsFont;
+        source: "qrc:/Ionicons/ionicons.ttf"
+    }
+
+
 
     ToolBar {
         id: overlayHeader
@@ -77,20 +87,30 @@ ApplicationWindow {
         height: toolBarHeight
 
         RowLayout {
-            anchors.fill: parent
+
+            anchors.verticalCenter: parent.verticalCenter
+
             ToolButton {
                 id: menuButton
-                text: qsTr("‹")
+                height: parent.height
+                font.family: ioniconsFont.name
+                Layout.alignment: Qt.AlignCenter
+                palette.buttonText: textColor
+                text: "\uF32A"
+                font.pixelSize: 30
+
                 onClicked: drawer.toggle()
+
+                background: Rectangle {
+                    color: drawerBackgroudColor
+                }
             }
 
             Label {
                 text: "FUSiON SMART"
                 id: title
                 elide: Label.ElideRight
-                horizontalAlignment: Qt.AlignHCenter
-                verticalAlignment: Qt.AlignVCenter
-                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignRight | Qt.AlignHCenter
                 color: textColor
                 font.pixelSize: 24
             }
@@ -100,6 +120,7 @@ ApplicationWindow {
                 elide: Label.ElideRight
                 color: textColorSecudary
                 font.pixelSize: 15
+                Layout.alignment: Qt.AlignRight | Qt.AlignHCenter
             }
         }
     }
@@ -109,40 +130,41 @@ ApplicationWindow {
         width: parent.width > 500 ? maxWidthDrawerItem : parent.width * 0.75
         height: window.height
         open: true
-        //        background: Rectangle {
-        //            color: drawerBackgroudColor
-        //        }
+        color: drawerBackgroudColor
+        anchors.top: parent.top
+        anchors.topMargin: 0
+        position: Qt.LeftEdge
 
         ToolBar {
             id: toolBarOnDrawer
             width: parent.width
             height: toolBarOnDrawerHeight
             background: Rectangle {
-                color: drawerBackgroudColor
-            }
-
-            GridLayout {
-                anchors.fill: parent
-                columns: (drawer.width < minHeightDashboardItem)? 1 : 2
-
-                Label {
-                    text: "FUSiON SMART"
-                    elide: Label.ElideRight
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
-                    //verticalAlignment: Qt.AlignVCenter
-                    //Layout.fillWidth: true
-                    color: textColor
-                    font.pixelSize: 24
-                }
-
-                Label {
-                    text: "BETA"
-                    elide: Label.ElideRight
-                    color: textColorSecudary
-                    font.pixelSize: 15
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: colorGradient_1
+                    }
+                    GradientStop {
+                        position: 0.33
+                        color: colorGradient_2
+                    }
+                    GradientStop {
+                        position: 0.66
+                        color: colorGradient_3
+                    }
                 }
             }
+        }
+
+        Rectangle {
+            id: perfilCircleOut
+            width: sizePerfilCircleOut
+            height: sizePerfilCircleOut
+            radius: sizePerfilCircleOut / 2
+            anchors.verticalCenter: toolBarOnDrawer.bottom
+            anchors.horizontalCenter: toolBarOnDrawer.horizontalCenter
+            opacity: 0.2
         }
 
         Rectangle {
@@ -152,8 +174,63 @@ ApplicationWindow {
             color: footerSelectedItemColor
         }
 
-        color: drawerBackgroudColor
-        position: Qt.LeftEdge
+        Rectangle {
+            id: perfilCircleIn
+            width: sizePerfilCircleIn
+            height: sizePerfilCircleIn
+            radius: sizePerfilCircleIn / 2
+            anchors.centerIn: perfilCircleOut
+            color: drawerBackgroudColor
+
+            Text {
+                id: iconPerfil
+                //anchors.fill: parent
+                font.family: ioniconsFont.name
+                anchors.horizontalCenter: perfilCircleIn.horizontalCenter
+                anchors.verticalCenter: perfilCircleIn.verticalCenter
+                text: "\uF345"
+                color: textColor
+                font.pixelSize: 50
+            }
+
+        }
+
+        Rectangle {
+            id: contentDrawer
+            width: parent.width
+            anchors.top: perfilCircleOut.bottom
+            anchors.bottom: parent.bottom
+            color: drawerBackgroudColor
+
+            GridLayout {
+                width: 210
+                height: 28
+                anchors.topMargin: 8
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                columns: (drawer.width < minHeightDashboardItem)? 1 : 2
+
+                Text {
+                    id: drawerLabel
+                    text: "FUSiON SMART"
+                    Layout.alignment: Qt.AlignTop
+                    color: textColor
+                    font.pixelSize: 24
+                }
+
+                Text {
+                    id: betaLabel
+                    text: "BETA"
+                    color: textColorSecudary
+                    font.pixelSize: 15
+                    Layout.alignment: Qt.AlignBottom
+                }
+            }
+
+            ListView {
+
+            }
+        }
     }
 
     Rectangle {
@@ -161,6 +238,7 @@ ApplicationWindow {
         height: parent.height
         width: parent.width
         layer.enabled: true
+
         layer.effect: LinearGradient {
             start: Qt.point(0, 0)
             end: Qt.point(window.width - 100, window.height - 100)
