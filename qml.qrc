@@ -32,5 +32,11 @@
         <file>Ionicons/ionicons.js</file>
         <file>Ionicons/ionicons.ttf</file>
         <file>Ionicons/README.md</file>
+        <file>Components/MenuSidebarItem.qml</file>
+        <file>assets/images/Appliances.svg</file>
+        <file>assets/images/Cost.svg</file>
+        <file>assets/images/Dashboard.svg</file>
+        <file>assets/images/Emissions.svg</file>
+        <file>assets/images/Usage_by_rooms.svg</file>
     </qresource>
 </RCC>

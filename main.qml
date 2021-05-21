@@ -88,16 +88,18 @@ ApplicationWindow {
 
         RowLayout {
 
-            anchors.verticalCenter: parent.verticalCenter
+            //anchors.verticalCenter: parent.verticalCenter
+            anchors.fill: parent
 
             ToolButton {
                 id: menuButton
                 height: parent.height
                 font.family: ioniconsFont.name
-                Layout.alignment: Qt.AlignCenter
+                //Layout.alignment: Qt.AlignCenter
                 palette.buttonText: textColor
                 text: "\uF32A"
                 font.pixelSize: 30
+                Layout.leftMargin: 25
 
                 onClicked: drawer.toggle()
 
@@ -110,7 +112,8 @@ ApplicationWindow {
                 text: "FUSiON SMART"
                 id: title
                 elide: Label.ElideRight
-                Layout.alignment: Qt.AlignRight | Qt.AlignHCenter
+                Layout.leftMargin: 20
+                Layout.alignment: Qt.AlignVCenter
                 color: textColor
                 font.pixelSize: 24
             }
@@ -120,14 +123,14 @@ ApplicationWindow {
                 elide: Label.ElideRight
                 color: textColorSecudary
                 font.pixelSize: 15
-                Layout.alignment: Qt.AlignRight | Qt.AlignHCenter
+                Layout.fillWidth: true
             }
         }
     }
 
     NavigationDrawer {
         id: drawer
-        width: parent.width > 500 ? maxWidthDrawerItem : parent.width * 0.75
+        width: parent.width > 500 ? maxWidthDrawerItem : parent.width * 0.85
         height: window.height
         open: true
         color: drawerBackgroudColor
@@ -227,8 +230,11 @@ ApplicationWindow {
                 }
             }
 
-            ListView {
-
+            MenuSidebarItem {
+                id: menuSidebarItem
+                topMargin: 66
+                width: parent.width
+                height: parent.height
             }
         }
     }
