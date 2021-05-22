@@ -135,7 +135,7 @@ Rectangle {
         }
     }
 
-    function handleClick(mouse) {
+    function handleClick(mouse) {//Modificar para fechar apenas quando tiver em modo mobile.
         if ((_rightEdge && mouse.x < panel.x ) || mouse.x > panel.width) {
             open = false;
         }
@@ -181,7 +181,7 @@ Rectangle {
         width: open ? _rootItem.width : _openMarginSize
         height: visualParent.height
         onPressed:  if (!open) holdAnimation.restart();
-        //onClicked: handleClick(mouse)
+        onClicked: handleClick(mouse)
         drag.target: panel
         drag.minimumX: _minimumX
         drag.maximumX: _maximumX

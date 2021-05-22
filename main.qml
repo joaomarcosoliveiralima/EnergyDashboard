@@ -78,28 +78,28 @@ ApplicationWindow {
     ToolBar {
         id: overlayHeader
         z: 1
-        visible: !(parent.width > 500)
+        visible: (parent.width < 500)
+        width: parent.width
+        height: toolBarHeight
         background: Rectangle {
             color: drawerBackgroudColor
         }
 
-        width: parent.width
-        height: toolBarHeight
-
         RowLayout {
-
             anchors.verticalCenter: parent.verticalCenter
+            width: parent.width
 
             ToolButton {
                 id: menuButton
                 height: parent.height
                 font.family: ioniconsFont.name
-                Layout.alignment: Qt.AlignCenter
+                //Layout.alignment: Qt.AlignCenter
+                anchors.leftMargin: 100
                 palette.buttonText: textColor
                 text: "\uF32A"
                 font.pixelSize: 30
-
                 onClicked: drawer.toggle()
+                leftPadding: 30
 
                 background: Rectangle {
                     color: drawerBackgroudColor
@@ -129,7 +129,7 @@ ApplicationWindow {
         id: drawer
         width: parent.width > 500 ? maxWidthDrawerItem : parent.width * 0.75
         height: window.height
-        open: true
+        open: (parent.width > 500)
         color: drawerBackgroudColor
         anchors.top: parent.top
         anchors.topMargin: 0
@@ -293,3 +293,9 @@ ApplicationWindow {
     //        }
     //    }
 }
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:1.33}
+}
+##^##*/
