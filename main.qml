@@ -6,6 +6,7 @@ import QtQuick.Window 2.2
 import QtGraphicalEffects 1.0
 
 import "./Pages"
+import "assets/fonts/Nunito_Sans"
 import "./Components"
 import "FontAwesome"
 import "FontWeather"
@@ -19,6 +20,8 @@ ApplicationWindow {
 
     property alias fontWeather: fontAwesomeLoadder.name
     property alias fontAwesome: fontAwesome.name
+    property alias fontNunitoLight: nunitoFont.name
+
     property color yellowIcon: "#F1C40F"
     property color backGroundColor: "#000015"
     property color drawerBackgroudColor: "#181745"
@@ -73,6 +76,11 @@ ApplicationWindow {
         source: "qrc:/Ionicons/ionicons.ttf"
     }
 
+    FontLoader {
+        id: nunitoFont;
+        source: "qrc:/assets/fonts/Nunito_Sans/NunitoSans-Light.ttf"
+    }
+
 
 
     ToolBar {
@@ -86,20 +94,21 @@ ApplicationWindow {
         }
 
         RowLayout {
-            anchors.verticalCenter: parent.verticalCenter
-            width: parent.width
+
+            //anchors.verticalCenter: parent.verticalCenter
+            anchors.fill: parent
 
             ToolButton {
                 id: menuButton
                 height: parent.height
                 font.family: ioniconsFont.name
                 //Layout.alignment: Qt.AlignCenter
-                anchors.leftMargin: 100
                 palette.buttonText: textColor
                 text: "\uF32A"
                 font.pixelSize: 30
+
                 onClicked: drawer.toggle()
-                leftPadding: 30
+                leftPadding: 25
 
                 background: Rectangle {
                     color: drawerBackgroudColor
@@ -110,9 +119,11 @@ ApplicationWindow {
                 text: "FUSiON SMART"
                 id: title
                 elide: Label.ElideRight
-                Layout.alignment: Qt.AlignRight | Qt.AlignHCenter
+                Layout.leftMargin: 20
+                Layout.alignment: Qt.AlignVCenter
                 color: textColor
                 font.pixelSize: 24
+                font.family: fontNunitoLight
             }
 
             Label {
@@ -120,14 +131,15 @@ ApplicationWindow {
                 elide: Label.ElideRight
                 color: textColorSecudary
                 font.pixelSize: 15
-                Layout.alignment: Qt.AlignRight | Qt.AlignHCenter
+                Layout.fillWidth: true
+                font.family: fontNunitoLight
             }
         }
     }
 
     NavigationDrawer {
         id: drawer
-        width: parent.width > 500 ? maxWidthDrawerItem : parent.width * 0.75
+        width: parent.width > 500 ? maxWidthDrawerItem : parent.width * 0.85
         height: window.height
         open: (parent.width > 500)
         color: drawerBackgroudColor
@@ -203,6 +215,7 @@ ApplicationWindow {
             color: drawerBackgroudColor
 
             GridLayout {
+                id: gridLabel
                 width: 210
                 height: 28
                 anchors.topMargin: 8
@@ -216,6 +229,7 @@ ApplicationWindow {
                     Layout.alignment: Qt.AlignTop
                     color: textColor
                     font.pixelSize: 24
+                    font.family: fontNunitoLight
                 }
 
                 Text {
@@ -224,11 +238,18 @@ ApplicationWindow {
                     color: textColorSecudary
                     font.pixelSize: 15
                     Layout.alignment: Qt.AlignBottom
+                    font.family: fontNunitoLight
                 }
             }
 
-            ListView {
-
+            MenuSidebarItem {
+                id: menuSidebarItem
+                topMargin: 130
+                interactive: false
+                anchors.top: gridLabel.bottom
+                anchors.bottom: parent.bottom
+                width: parent.width
+                height: parent.height
             }
         }
     }
