@@ -39,10 +39,11 @@ ListView {
 
             Row {
                 anchors.fill: parent
+                spacing: 20
 
                 Image {
-                    height: parent.height
-                    width: 40
+                    height: 30
+                    width: 30
                     source: icon
                 }
                 Text {
