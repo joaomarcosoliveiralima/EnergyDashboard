@@ -6,57 +6,32 @@ import QtQuick.Window 2.2
 import QtGraphicalEffects 1.0
 
 import "./Pages"
+import "assets/fonts/Nunito_Sans"
 import "./Components"
 import "FontAwesome"
 import "FontWeather"
 import "./Ionicons/ionicons.js" as Ionicons
+import "Style"
 
 
 ApplicationWindow {
-    /**
-        Definindo todas as property como fontes e cores do sistema.
-    **/
 
     property alias fontWeather: fontAwesomeLoadder.name
     property alias fontAwesome: fontAwesome.name
-    property color yellowIcon: "#F1C40F"
-    property color backGroundColor: "#000015"
-    property color drawerBackgroudColor: "#181745"
-    property color footerColor: "#131428"
-    property color textColor: "#FFFFFF"
-    property color textColorSecudary: "#e6526d"
-    property color recentActivityBackground: "#0c1534"
-    property color footerSelectedItemColor: "#1ABC9C"
-    property color colorGradient_1: "#216e93"
-    property color colorGradient_2: "#21648a"
-    property color colorGradient_3: "#1f5881"
-    property color colorGradient_4: "#191c51"
-
-    property int minHeightDashboardItem: 300
-    property int minHeightToolbar: 68
-    property int sizePerfilCircleIn: 65
-    property int sizePerfilCircleOut: 75
-    property int maxWidthDrawerItem: 350
-    property int spaceCell: 5
-    property int appWidth: 1300//Screen.width
-    property int appHeight: 800//Screen.height
-    property int toolBarHeight: 68//Screen.height
-    property int dividerHeight: 2//Screen.height
-    property int toolBarOnDrawerHeight: 100//Screen.height
+    property alias fontNunitoLight: nunitoFont.name
 
     id: window
-    width: appWidth
-    height: appHeight
+    width: Style.window.appWidth
+    height: Style.window.appHeight
     visible: true
-    title: qsTr("Tabs")
+    title: qsTr("Smart Energy")
 
     /**
         Alteração nas cores do tema padrão do qml
     **/
-    Material.accent: footerSelectedItemColor
-    Material.background: backGroundColor
+    Material.accent: Style.color.footerSelectedItemColor
+    Material.background: Style.color.backGroundColor
     Material.theme: Material.Dark
-
 
     FontLoader {
         id: fontAwesome;
@@ -73,18 +48,22 @@ ApplicationWindow {
         source: "qrc:/Ionicons/ionicons.ttf"
     }
 
+    FontLoader {
+        id: nunitoFont;
+        source: "qrc:/assets/fonts/Nunito_Sans/NunitoSans-Light.ttf"
+    }
+
 
 
     ToolBar {
         id: overlayHeader
         z: 1
-        visible: !(parent.width > 500)
-        background: Rectangle {
-            color: drawerBackgroudColor
-        }
-
+        visible: (parent.width < Style.window.minOpenDrawer)
         width: parent.width
-        height: toolBarHeight
+        height: Style.window.toolBarHeight
+        background: Rectangle {
+            color: Style.color.drawerBackgroudColor
+        }
 
         RowLayout {
 
@@ -96,15 +75,15 @@ ApplicationWindow {
                 height: parent.height
                 font.family: ioniconsFont.name
                 //Layout.alignment: Qt.AlignCenter
-                palette.buttonText: textColor
+                palette.buttonText: Style.color.textColor
                 text: "\uF32A"
                 font.pixelSize: 30
-                Layout.leftMargin: 25
 
                 onClicked: drawer.toggle()
+                leftPadding: Style.margin.leftMarginOnMenu
 
                 background: Rectangle {
-                    color: drawerBackgroudColor
+                    color: Style.color.drawerBackgroudColor
                 }
             }
 
@@ -112,28 +91,30 @@ ApplicationWindow {
                 text: "FUSiON SMART"
                 id: title
                 elide: Label.ElideRight
-                Layout.leftMargin: 20
+                Layout.leftMargin: Style.margin.leftMarginOnLabel
                 Layout.alignment: Qt.AlignVCenter
-                color: textColor
+                color: Style.color.textColor
                 font.pixelSize: 24
+                font.family: fontNunitoLight
             }
 
             Label {
                 text: "BETA"
                 elide: Label.ElideRight
-                color: textColorSecudary
+                color: Style.color.colorSecudary
                 font.pixelSize: 15
                 Layout.fillWidth: true
+                font.family: fontNunitoLight
             }
         }
     }
 
     NavigationDrawer {
         id: drawer
-        width: parent.width > 500 ? maxWidthDrawerItem : parent.width * 0.85
+        width: parent.width > Style.window.minOpenDrawer ? Style.window.maxWidthDrawerItem : parent.width * 0.85
         height: window.height
-        open: true
-        color: drawerBackgroudColor
+        open: (parent.width > Style.window.minOpenDrawer )
+        color: Style.color.drawerBackgroudColor
         anchors.top: parent.top
         anchors.topMargin: 0
         position: Qt.LeftEdge
@@ -141,20 +122,20 @@ ApplicationWindow {
         ToolBar {
             id: toolBarOnDrawer
             width: parent.width
-            height: toolBarOnDrawerHeight
+            height: Style.window.toolBarOnDrawerHeight
             background: Rectangle {
                 gradient: Gradient {
                     GradientStop {
                         position: 0
-                        color: colorGradient_1
+                        color: Style.color.colorGradient_1
                     }
                     GradientStop {
                         position: 0.33
-                        color: colorGradient_2
+                        color: Style.color.colorGradient_2
                     }
                     GradientStop {
                         position: 0.66
-                        color: colorGradient_3
+                        color: Style.color.colorGradient_3
                     }
                 }
             }
@@ -162,9 +143,9 @@ ApplicationWindow {
 
         Rectangle {
             id: perfilCircleOut
-            width: sizePerfilCircleOut
-            height: sizePerfilCircleOut
-            radius: sizePerfilCircleOut / 2
+            width: Style.window.sizePerfilCircleOut
+            height: Style.window.sizePerfilCircleOut
+            radius: Style.window.sizePerfilCircleOut / 2
             anchors.verticalCenter: toolBarOnDrawer.bottom
             anchors.horizontalCenter: toolBarOnDrawer.horizontalCenter
             opacity: 0.2
@@ -172,18 +153,18 @@ ApplicationWindow {
 
         Rectangle {
             width: parent.width
-            height: dividerHeight
+            height: Style.window.dividerHeight
             anchors.top: toolBarOnDrawer.bottom
-            color: footerSelectedItemColor
+            color: Style.color.footerSelectedItemColor
         }
 
         Rectangle {
             id: perfilCircleIn
-            width: sizePerfilCircleIn
-            height: sizePerfilCircleIn
-            radius: sizePerfilCircleIn / 2
+            width: Style.window.sizePerfilCircleIn
+            height: Style.window.sizePerfilCircleIn
+            radius: Style.window.sizePerfilCircleIn / 2
             anchors.centerIn: perfilCircleOut
-            color: drawerBackgroudColor
+            color: Style.color.drawerBackgroudColor
 
             Text {
                 id: iconPerfil
@@ -192,7 +173,7 @@ ApplicationWindow {
                 anchors.horizontalCenter: perfilCircleIn.horizontalCenter
                 anchors.verticalCenter: perfilCircleIn.verticalCenter
                 text: "\uF345"
-                color: textColor
+                color: Style.color.textColor
                 font.pixelSize: 50
             }
 
@@ -203,38 +184,48 @@ ApplicationWindow {
             width: parent.width
             anchors.top: perfilCircleOut.bottom
             anchors.bottom: parent.bottom
-            color: drawerBackgroudColor
+            color: Style.color.drawerBackgroudColor
 
             GridLayout {
-                width: 210
-                height: 28
+                id: gridLabel
                 anchors.topMargin: 8
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                columns: (drawer.width < minHeightDashboardItem)? 1 : 2
+                columns: (drawer.width < Style.window.minHeightDashboardItem) ? 1 : 2
 
                 Text {
                     id: drawerLabel
                     text: "FUSiON SMART"
                     Layout.alignment: Qt.AlignTop
-                    color: textColor
+                    color: Style.color.textColor
                     font.pixelSize: 24
+                    font.family: fontNunitoLight
                 }
 
                 Text {
                     id: betaLabel
                     text: "BETA"
-                    color: textColorSecudary
+                    color: Style.color.colorSecudary
                     font.pixelSize: 15
                     Layout.alignment: Qt.AlignBottom
+                    font.family: fontNunitoLight
                 }
             }
 
             MenuSidebarItem {
                 id: menuSidebarItem
-                topMargin: 66
+                topMargin: Style.margin.topMarginMenuItem
+                interactive: false
+                anchors.top: gridLabel.bottom
+                anchors.bottom: parent.bottom
                 width: parent.width
                 height: parent.height
+                focus: true
+
+                onCurrentIndexChanged: {
+                    console.log("Changed Current Index: " +
+                                menuSidebarItem.currentIndex)
+                }
             }
         }
     }
@@ -251,19 +242,19 @@ ApplicationWindow {
             gradient: Gradient {
                 GradientStop {
                     position: 0
-                    color: colorGradient_1
+                    color: Style.color.colorGradient_1
                 }
                 GradientStop {
                     position: 0.33
-                    color: colorGradient_2
+                    color: Style.color.colorGradient_2
                 }
                 GradientStop {
                     position: 0.66
-                    color: colorGradient_3
+                    color: Style.color.colorGradient_3
                 }
                 GradientStop {
                     position: 1
-                    color: colorGradient_4
+                    color: Style.color.colorGradient_4
                 }
             }
         }
@@ -295,7 +286,13 @@ ApplicationWindow {
     //        }
 
     //        background: Rectangle {
-    //            color: footerColor
+    //            color: Style.color.footerColor
     //        }
     //    }
 }
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:1.33}
+}
+##^##*/

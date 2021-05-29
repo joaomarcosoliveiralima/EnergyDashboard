@@ -1,7 +1,13 @@
 import QtQuick 2.12
+import QtQuick.Layouts 1.12
+import QtQuick.Controls 2.12
+import QtGraphicalEffects 1.15
+
+import "../Style"
 
 ListView {
     id: listViewMenu
+    property int hoverIndex: 0
 
     ListModel {
         id: menuModel
@@ -28,32 +34,70 @@ ListView {
         }
     }
 
-    model: menuModel
-
     Component {
         id: delegateListElement
 
         Item {
             width: listViewMenu.width
-            height: 40
+            height: Style.window.heightItemMenu
 
-            Row {
-                anchors.fill: parent
+            RowLayout {
+                width: parent.width
+                height: Style.window.heightContentItemMenu
                 spacing: 20
 
                 Image {
-                    height: 30
-                    width: 30
+                    id: iconMenuItem
+                    Layout.preferredHeight: Style.window.sizeMenuIcon
+                    Layout.preferredWidth: Style.window.sizeMenuIcon
+                    Layout.leftMargin: Style.margin.leftMarginOnMenu
                     source: icon
+
+                    ColorOverlay {
+                        anchors.fill: parent
+                        source: iconMenuItem
+                        color: (listViewMenu.currentIndex === index || hoverIndex === index ) ? Style.color.textColor :
+                                                                       Style.color.textColorSecundary
+                    }
                 }
+
                 Text {
-                    font.pointSize: 15
-                    color: "white"
+                    id: labelMenuItem
+                    color: (listViewMenu.currentIndex === index || hoverIndex === index ) ? Style.color.textColor :
+                                                                   Style.color.textColorSecundary
                     text: name
+                    Layout.alignment: Qt.AlignLeft
+                    Layout.fillWidth: true
+
+                    //                    anchors.left: iconMenuItem.right
+                    font.pointSize: 15
+                    font.family: fontNunitoLight
+                }
+
+                Rectangle {
+                    id: rec
+                    visible: (listViewMenu.currentIndex === index)
+                    Layout.preferredHeight: parent.height
+                    Layout.alignment: Qt.AlignRight
+                    Layout.preferredWidth: 3
+                    color: Style.color.footerSelectedItemColor
+                }
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+
+                onClicked: {
+                    listViewMenu.currentIndex = index
+                }
+                onHoveredChanged: {
+                    hoverIndex = index
                 }
             }
         }
     }
 
+    model: menuModel
     delegate: delegateListElement
 }

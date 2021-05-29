@@ -38,5 +38,22 @@
         <file>assets/images/Dashboard.svg</file>
         <file>assets/images/Emissions.svg</file>
         <file>assets/images/Usage_by_rooms.svg</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-Black.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-BlackItalic.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-Bold.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-BoldItalic.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-ExtraBold.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-ExtraBoldItalic.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-ExtraLight.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-ExtraLightItalic.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-Italic.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-Light.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-LightItalic.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-Regular.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-SemiBold.ttf</file>
+        <file>assets/fonts/Nunito_Sans/NunitoSans-SemiBoldItalic.ttf</file>
+        <file>assets/fonts/Nunito_Sans/OFL.txt</file>
+        <file>Style/Style.qml</file>
+        <file>Style/qmldir</file>
     </qresource>
 </RCC>
