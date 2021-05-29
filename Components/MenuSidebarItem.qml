@@ -56,15 +56,17 @@ ListView {
                     ColorOverlay {
                         anchors.fill: parent
                         source: iconMenuItem
-                        color: (listViewMenu.currentIndex === index || hoverIndex === index ) ? Style.color.textColor :
-                                                                       Style.color.textColorSecundary
+                        color: ( listViewMenu.currentIndex === index ) ||
+                               ( hoverIndex === index ) ? Style.color.textColor :
+                                                        Style.color.textColorSecundary
                     }
                 }
 
                 Text {
                     id: labelMenuItem
-                    color: (listViewMenu.currentIndex === index || hoverIndex === index ) ? Style.color.textColor :
-                                                                   Style.color.textColorSecundary
+                    color: ( listViewMenu.currentIndex === index ) ||
+                           ( hoverIndex === index ) ? Style.color.textColor :
+                                                    Style.color.textColorSecundary
                     text: name
                     Layout.alignment: Qt.AlignLeft
                     Layout.fillWidth: true
