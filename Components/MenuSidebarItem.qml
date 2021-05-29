@@ -2,6 +2,8 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 
+import "../Style"
+
 ListView {
     id: listViewMenu
 
@@ -37,18 +39,18 @@ ListView {
 
         Item {
             width: listViewMenu.width
-            height: 70
+            height: Style.window.heightItemMenu
 
             RowLayout {
                 width: parent.width
-                height: 40
+                height: Style.window.heightContentItemMenu
                 spacing: 20
 
                 Image {
                     id: iconMenuItem
-                    Layout.preferredHeight: 30
-                    Layout.preferredWidth: 30
-                    Layout.leftMargin: 25
+                    Layout.preferredHeight: Style.window.sizeMenuIcon
+                    Layout.preferredWidth: Style.window.sizeMenuIcon
+                    Layout.leftMargin: Style.margin.leftMarginOnMenu
 //                    height: parent.height
 //                    width: 30
                     source: icon
@@ -69,7 +71,7 @@ ListView {
                     Layout.preferredHeight: parent.height
                     Layout.alignment: Qt.AlignRight
                     Layout.preferredWidth: 3
-                    color: footerSelectedItemColor
+                    color: Style.color.footerSelectedItemColor
                 }
             }
         }

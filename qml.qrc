@@ -53,5 +53,7 @@
         <file>assets/fonts/Nunito_Sans/NunitoSans-SemiBold.ttf</file>
         <file>assets/fonts/Nunito_Sans/NunitoSans-SemiBoldItalic.ttf</file>
         <file>assets/fonts/Nunito_Sans/OFL.txt</file>
+        <file>Style/Style.qml</file>
+        <file>Style/qmldir</file>
     </qresource>
 </RCC>
