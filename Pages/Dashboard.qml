@@ -2,6 +2,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
+import "../Style"
+
 Page {
     id: page
     property int iNumberOfElemenetsH: 3
@@ -11,11 +13,11 @@ Page {
         text: qsTr("DASHBOARD")
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
-        color: textColor
+        color: Style.color.textColor
     }
 
     background: Rectangle {
-        color: backGroundColor
+        color: Style.color.backGroundColor
     }
 
     GridLayout {
@@ -33,9 +35,22 @@ Page {
             Layout.fillHeight: true
 
             gradient: Gradient {
-                GradientStop { position: 0.0; color: colorMenuDashboard_1}
-                GradientStop { position: 0.40; color: colorMenuDashboard_2 }
-                GradientStop { position: 1.0; color: colorMenuDashboard_3}
+                GradientStop {
+                    position: 0
+                    color: Style.color.colorGradient_1
+                }
+                GradientStop {
+                    position: 0.33
+                    color: Style.color.colorGradient_2
+                }
+                GradientStop {
+                    position: 0.66
+                    color: Style.color.colorGradient_3
+                }
+                GradientStop {
+                    position: 1
+                    color: Style.color.colorGradient_4
+                }
             }
 
             Label {
@@ -51,9 +66,22 @@ Page {
             Layout.fillHeight: true
 
             gradient: Gradient {
-                GradientStop { position: 0.0; color: colorMenuDashboard_1}
-                GradientStop { position: 0.40; color: colorMenuDashboard_2 }
-                GradientStop { position: 1.0; color: colorMenuDashboard_3}
+                GradientStop {
+                    position: 0
+                    color: Style.color.colorGradient_1
+                }
+                GradientStop {
+                    position: 0.33
+                    color: Style.color.colorGradient_2
+                }
+                GradientStop {
+                    position: 0.66
+                    color: Style.color.colorGradient_3
+                }
+                GradientStop {
+                    position: 1
+                    color: Style.color.colorGradient_4
+                }
             }
 
             Label {
@@ -69,9 +97,22 @@ Page {
             Layout.fillHeight: true
 
             gradient: Gradient {
-                GradientStop { position: 0.0; color: colorMenuDashboard_1}
-                GradientStop { position: 0.40; color: colorMenuDashboard_2 }
-                GradientStop { position: 1.0; color: colorMenuDashboard_3}
+                GradientStop {
+                    position: 0
+                    color: Style.color.colorGradient_1
+                }
+                GradientStop {
+                    position: 0.33
+                    color: Style.color.colorGradient_2
+                }
+                GradientStop {
+                    position: 0.66
+                    color: Style.color.colorGradient_3
+                }
+                GradientStop {
+                    position: 1
+                    color: Style.color.colorGradient_4
+                }
             }
 
             Label {
@@ -87,9 +128,22 @@ Page {
             Layout.fillHeight: true
 
             gradient: Gradient {
-                GradientStop { position: 0.0; color: colorMenuDashboard_1}
-                GradientStop { position: 0.40; color: colorMenuDashboard_2 }
-                GradientStop { position: 1.0; color: colorMenuDashboard_3}
+                GradientStop {
+                    position: 0
+                    color: Style.color.colorGradient_1
+                }
+                GradientStop {
+                    position: 0.33
+                    color: Style.color.colorGradient_2
+                }
+                GradientStop {
+                    position: 0.66
+                    color: Style.color.colorGradient_3
+                }
+                GradientStop {
+                    position: 1
+                    color: Style.color.colorGradient_4
+                }
             }
 
             Label {
@@ -104,9 +158,22 @@ Page {
             Layout.fillHeight: true
 
             gradient: Gradient {
-                GradientStop { position: 0.0; color: colorMenuDashboard_1}
-                GradientStop { position: 0.40; color: colorMenuDashboard_2 }
-                GradientStop { position: 1.0; color: colorMenuDashboard_3}
+                GradientStop {
+                    position: 0
+                    color: Style.color.colorGradient_1
+                }
+                GradientStop {
+                    position: 0.33
+                    color: Style.color.colorGradient_2
+                }
+                GradientStop {
+                    position: 0.66
+                    color: Style.color.colorGradient_3
+                }
+                GradientStop {
+                    position: 1
+                    color: Style.color.colorGradient_4
+                }
             }
 
             Label {
@@ -121,7 +188,7 @@ Page {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            color: recentActivityBackground
+            color: Style.color.recentActivityBackground
 
             Label {
                 anchors.centerIn: parent

@@ -20,6 +20,9 @@ ApplicationWindow {
     property alias fontAwesome: fontAwesome.name
     property alias fontNunitoLight: nunitoFont.name
 
+    property bool mobileView: false
+
+
     id: window
     width: Style.window.appWidth
     height: Style.window.appHeight
@@ -111,7 +114,7 @@ ApplicationWindow {
 
     NavigationDrawer {
         id: drawer
-        width: parent.width > Style.window.minOpenDrawer ? Style.window.maxWidthDrawerItem : parent.width * 0.85
+        width: parent.width > Style.window.mobileWidth ? Style.window.maxWidthDrawerItem : parent.width * 0.85
         height: window.height
         open: (parent.width > Style.window.minOpenDrawer )
         color: Style.color.drawerBackgroudColor
@@ -230,43 +233,88 @@ ApplicationWindow {
         }
     }
 
-    Rectangle {
-        anchors.left: drawer.right
+    Dashboard {
+        id: dashboardPage
         height: parent.height
-        width: parent.width
-        layer.enabled: true
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.left: overlayHeader.visible ? parent.left : drawer.right
+        visible: menuSidebarItem.currentIndex === 0 //Index 0 do MenuItem
 
-        layer.effect: LinearGradient {
-            start: Qt.point(0, 0)
-            end: Qt.point(window.width - 100, window.height - 100)
-            gradient: Gradient {
-                GradientStop {
-                    position: 0
-                    color: Style.color.colorGradient_1
-                }
-                GradientStop {
-                    position: 0.33
-                    color: Style.color.colorGradient_2
-                }
-                GradientStop {
-                    position: 0.66
-                    color: Style.color.colorGradient_3
-                }
-                GradientStop {
-                    position: 1
-                    color: Style.color.colorGradient_4
-                }
-            }
-        }
+        background: Rectangle {
 
-        MouseArea{
+            layer.enabled: true
             anchors.fill: parent
 
-            onClicked: {
-
+            layer.effect: LinearGradient {
+                start: Qt.point(0, 0)
+                end: Qt.point(window.width - 100, window.height - 100)
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: Style.color.colorGradient_1
+                    }
+                    GradientStop {
+                        position: 0.33
+                        color: Style.color.colorGradient_2
+                    }
+                    GradientStop {
+                        position: 0.66
+                        color: Style.color.colorGradient_3
+                    }
+                    GradientStop {
+                        position: 1
+                        color: Style.color.colorGradient_4
+                    }
+                }
             }
         }
     }
+
+    Cost {
+        id: costPage
+        height: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.left: overlayHeader.visible ? parent.left : drawer.right
+        visible: menuSidebarItem.currentIndex === 1 //Index 0 do MenuItem
+    }
+
+    Appliances {
+        id: appliancesPage
+        height: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.left: overlayHeader.visible ? parent.left : drawer.right
+        visible: menuSidebarItem.currentIndex === 2 //Index 0 do MenuItem
+    }
+
+    UsageByRooms {
+        id: usageByRoomsPage
+        height: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.left: overlayHeader.visible ? parent.left : drawer.right
+        visible: menuSidebarItem.currentIndex === 3 //Index 0 do MenuItem
+    }
+
+    Emissions {
+        id: emissionsPage
+        height: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.left: overlayHeader.visible ? parent.left : drawer.right
+        visible: menuSidebarItem.currentIndex === 4 //Index 0 do MenuItem
+    }
+
+    MouseArea{
+        anchors.fill: parent
+
+        onClicked: {
+
+        }
+    }
+    //}
 
     //    footer: TabBar {
     //        id: tabBar

@@ -6,7 +6,8 @@ QtObject {
 
     readonly property QtObject window: QtObject {
         property int minHeightDashboardItem: 300
-        property int minOpenDrawer: 500
+        property int minOpenDrawer: 1100
+        property int mobileWidth: 500
         property int minHeightToolbar: 68
         property int sizePerfilCircleIn: 65
         property int sizePerfilCircleOut: 75
@@ -39,7 +40,7 @@ QtObject {
     }
 
     readonly property QtObject margin: QtObject {
-        property int leftMarginOnMenu: 25
+        property int leftMarginOnMenu: 35
         property int leftMarginOnLabel: 20
         property int topMarginMenuItem: 130
 

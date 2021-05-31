@@ -24,10 +24,10 @@
         <file>icons/lampada.svg</file>
         <file>icons/sun.png</file>
         <file>icons/sun.svg</file>
-        <file>Pages/Climate.qml</file>
+        <file>Pages/Cost.qml</file>
         <file>Pages/Dashboard.qml</file>
-        <file>Pages/Lighting.qml</file>
-        <file>Pages/Weather.qml</file>
+        <file>Pages/Appliances.qml</file>
+        <file>Pages/UsageByRooms.qml</file>
         <file>icons/menu_white_48dp.svg</file>
         <file>Ionicons/ionicons.js</file>
         <file>Ionicons/ionicons.ttf</file>
@@ -55,5 +55,6 @@
         <file>assets/fonts/Nunito_Sans/OFL.txt</file>
         <file>Style/Style.qml</file>
         <file>Style/qmldir</file>
+        <file>Pages/Emissions.qml</file>
     </qresource>
 </RCC>
