@@ -240,9 +240,53 @@ ApplicationWindow {
         anchors.right: parent.right
         anchors.left: overlayHeader.visible ? parent.left : drawer.right
         visible: menuSidebarItem.currentIndex === 0 //Index 0 do MenuItem
+        background: Loader { sourceComponent: gradientBackground }
+    }
 
-        background: Rectangle {
+    Cost {
+        id: costPage
+        height: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.left: overlayHeader.visible ? parent.left : drawer.right
+        visible: menuSidebarItem.currentIndex === 1 //Index 1 do MenuItem
+        background: Loader { sourceComponent: gradientBackground }
+    }
 
+    Appliances {
+        id: appliancesPage
+        height: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.left: overlayHeader.visible ? parent.left : drawer.right
+        visible: menuSidebarItem.currentIndex === 2 //Index 2 do MenuItem
+        background: Loader { sourceComponent: gradientBackground }
+    }
+
+    UsageByRooms {
+        id: usageByRoomsPage
+        height: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.left: overlayHeader.visible ? parent.left : drawer.right
+        visible: menuSidebarItem.currentIndex === 3 //Index 3 do MenuItem
+        background: Loader { sourceComponent: gradientBackground }
+    }
+
+    Emissions {
+        id: emissionsPage
+        height: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.left: overlayHeader.visible ? parent.left : drawer.right
+        visible: menuSidebarItem.currentIndex === 4 //Index 4 do MenuItem
+        background: Loader { sourceComponent: gradientBackground }
+    }
+
+    Component {
+        id: gradientBackground
+
+        Rectangle {
             layer.enabled: true
             anchors.fill: parent
 
@@ -271,49 +315,6 @@ ApplicationWindow {
         }
     }
 
-    Cost {
-        id: costPage
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.left: overlayHeader.visible ? parent.left : drawer.right
-        visible: menuSidebarItem.currentIndex === 1 //Index 0 do MenuItem
-    }
-
-    Appliances {
-        id: appliancesPage
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.left: overlayHeader.visible ? parent.left : drawer.right
-        visible: menuSidebarItem.currentIndex === 2 //Index 0 do MenuItem
-    }
-
-    UsageByRooms {
-        id: usageByRoomsPage
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.left: overlayHeader.visible ? parent.left : drawer.right
-        visible: menuSidebarItem.currentIndex === 3 //Index 0 do MenuItem
-    }
-
-    Emissions {
-        id: emissionsPage
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.left: overlayHeader.visible ? parent.left : drawer.right
-        visible: menuSidebarItem.currentIndex === 4 //Index 0 do MenuItem
-    }
-
-    MouseArea{
-        anchors.fill: parent
-
-        onClicked: {
-
-        }
-    }
     //}
 
     //    footer: TabBar {

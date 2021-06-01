@@ -12,13 +12,84 @@ Page {
     header: Label {
         text: qsTr("DASHBOARD")
         font.pixelSize: Qt.application.font.pixelSize * 2
-        padding: 10
+        font.family: fontNunitoLight
+        padding: 20
         color: Style.color.textColor
     }
 
     background: Rectangle {
         color: Style.color.backGroundColor
     }
+
+    ListModel {
+        id: listCharts
+
+        ListElement {
+            label: "COST PREDICTED"
+            source: ""
+        }
+
+        ListElement {
+            label: "CHANGE IN COST"
+            source: ""
+        }
+
+        ListElement {
+            label: "USAGE ESTIMATE"
+            source: ""
+        }
+
+        ListElement {
+            label: "ACTIVE APPLIANCES"
+            source: ""
+        }
+
+        ListElement {
+            label: "ENERGY INTENSITY"
+            source: ""
+        }
+
+        ListElement {
+            label: "CARBON FOOTPRINT"
+            source: ""
+        }
+    }
+
+    Component {
+        id: containerCharts
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            Rectangle {
+                anchors.fill: parent
+                id: backgroundContainer
+                color: Style.color.containerColor
+                opacity: .6
+                radius: 4
+            }
+
+            Text {
+                id: title
+                text: label
+                padding: 7
+                color: Style.color.textColor
+                opacity: 1
+                font.pixelSize: 15
+                font.family: fontNunitoLight
+                anchors.top: parent.top
+            }
+
+            Rectangle {
+                width: parent.width
+                height: 2
+                color: Style.color.drawerBackgroudColor
+                anchors.top: title.bottom
+            }
+
+        }
+    }
+
 
     GridLayout {
         anchors.fill: parent
@@ -29,173 +100,63 @@ Page {
         columns: iNumberOfElemenetsH
         flow:  width > height ? GridLayout.LeftToRight : GridLayout.TopToBottom
 
-        Rectangle {
-            id: weatherRec
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            gradient: Gradient {
-                GradientStop {
-                    position: 0
-                    color: Style.color.colorGradient_1
-                }
-                GradientStop {
-                    position: 0.33
-                    color: Style.color.colorGradient_2
-                }
-                GradientStop {
-                    position: 0.66
-                    color: Style.color.colorGradient_3
-                }
-                GradientStop {
-                    position: 1
-                    color: Style.color.colorGradient_4
-                }
-            }
-
-            Label {
-                anchors.centerIn: parent
-                text: "Weather"
-                color: "white"
-            }
+        Repeater {
+            model: listCharts
+            delegate: containerCharts
         }
 
-        Rectangle {
-            id: lightingRec
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+        //        Rectangle {
+        //            id: weatherRec
+        //            Layout.fillWidth: true
+        //            Layout.fillHeight: true
+        //            color: Style.color.containerColor
+        //            opacity: .6
+        //            radius: 4
+        //        }
 
-            gradient: Gradient {
-                GradientStop {
-                    position: 0
-                    color: Style.color.colorGradient_1
-                }
-                GradientStop {
-                    position: 0.33
-                    color: Style.color.colorGradient_2
-                }
-                GradientStop {
-                    position: 0.66
-                    color: Style.color.colorGradient_3
-                }
-                GradientStop {
-                    position: 1
-                    color: Style.color.colorGradient_4
-                }
-            }
+        //        Rectangle {
+        //            id: lightingRec
+        //            Layout.fillWidth: true
+        //            Layout.fillHeight: true
+        //            color: Style.color.containerColor
+        //            opacity: .6
+        //            radius: 4
+        //        }
 
-            Label {
-                anchors.centerIn: parent
-                text: "Lighting"
-                color: "white"
-            }
-        }
+        //        Rectangle {
+        //            id: climateRec
+        //            Layout.fillWidth: true
+        //            Layout.fillHeight: true
+        //            color: Style.color.containerColor
+        //            opacity: .6
+        //            radius: 4
+        //        }
 
-        Rectangle {
-            id: climateRec
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+        //        Rectangle {
+        //            id: securityRec
+        //            Layout.fillWidth: true
+        //            Layout.fillHeight: true
+        //            color: Style.color.containerColor
+        //            opacity: .6
+        //            radius: 4
+        //        }
+        //        Rectangle {
+        //            id: energyMonitorRec
+        //            Layout.fillWidth: true
+        //            Layout.fillHeight: true
+        //            color: Style.color.containerColor
+        //            opacity: .6
+        //            radius: 4
+        //        }
 
-            gradient: Gradient {
-                GradientStop {
-                    position: 0
-                    color: Style.color.colorGradient_1
-                }
-                GradientStop {
-                    position: 0.33
-                    color: Style.color.colorGradient_2
-                }
-                GradientStop {
-                    position: 0.66
-                    color: Style.color.colorGradient_3
-                }
-                GradientStop {
-                    position: 1
-                    color: Style.color.colorGradient_4
-                }
-            }
-
-            Label {
-                anchors.centerIn: parent
-                text: "Climate"
-                color: "white"
-            }
-        }
-
-        Rectangle {
-            id: securityRec
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            gradient: Gradient {
-                GradientStop {
-                    position: 0
-                    color: Style.color.colorGradient_1
-                }
-                GradientStop {
-                    position: 0.33
-                    color: Style.color.colorGradient_2
-                }
-                GradientStop {
-                    position: 0.66
-                    color: Style.color.colorGradient_3
-                }
-                GradientStop {
-                    position: 1
-                    color: Style.color.colorGradient_4
-                }
-            }
-
-            Label {
-                anchors.centerIn: parent
-                text: "Security"
-                color: "white"
-            }
-        }
-        Rectangle {
-            id: energyMonitorRec
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            gradient: Gradient {
-                GradientStop {
-                    position: 0
-                    color: Style.color.colorGradient_1
-                }
-                GradientStop {
-                    position: 0.33
-                    color: Style.color.colorGradient_2
-                }
-                GradientStop {
-                    position: 0.66
-                    color: Style.color.colorGradient_3
-                }
-                GradientStop {
-                    position: 1
-                    color: Style.color.colorGradient_4
-                }
-            }
-
-            Label {
-                anchors.centerIn: parent
-                text: "Energy Monitor"
-                color: "white"
-            }
-        }
-
-        Rectangle {
-            id: recentActivityRec
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            color: Style.color.recentActivityBackground
-
-            Label {
-                anchors.centerIn: parent
-                text: "Recent Activity"
-                color: "white"
-            }
-        }
+        //        Rectangle {
+        //            id: recentActivityRec
+        //            Layout.fillWidth: true
+        //            Layout.fillHeight: true
+        //            color: Style.color.containerColor
+        //            opacity: .6
+        //            radius: 4
+        //        }
     }
 
     MouseArea{

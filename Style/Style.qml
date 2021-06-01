@@ -25,6 +25,7 @@ QtObject {
 
     readonly property QtObject color: QtObject {
         property color yellowIcon: "#F1C40F"
+        property color containerColor: "#1D1B41"
         property color backGroundColor: "#000015"
         property color drawerBackgroudColor: "#181745"
         property color footerColor: "#131428"
