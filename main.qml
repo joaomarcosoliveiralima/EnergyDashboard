@@ -224,7 +224,6 @@ ApplicationWindow {
                 width: parent.width
                 height: parent.height
                 focus: true
-
                 onCurrentIndexChanged: {
                     console.log("Changed Current Index: " +
                                 menuSidebarItem.currentIndex)
@@ -233,55 +232,89 @@ ApplicationWindow {
         }
     }
 
-    Dashboard {
-        id: dashboardPage
+    SwipeView {
+        id: swipeView
+
+        currentIndex: menuSidebarItem.currentIndex
         height: parent.height
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
         anchors.left: overlayHeader.visible ? parent.left : drawer.right
-        visible: menuSidebarItem.currentIndex === 0 //Index 0 do MenuItem
-        background: Loader { sourceComponent: gradientBackground }
+
+        Item {
+            Dashboard {
+                id: dashboardPage
+                anchors.fill: parent
+                background: Loader { sourceComponent: gradientBackground }
+            }
+        }
+
+        Item {
+            Cost {
+                id: costPage
+                anchors.fill: parent
+                background: Loader { sourceComponent: gradientBackground }
+            }
+        }
+
+        Item {
+            Appliances {
+                id: appliancesPage
+                anchors.fill: parent
+                background: Loader { sourceComponent: gradientBackground }
+            }
+        }
+
+        Item {
+            UsageByRooms {
+                id: usageByRoomsPage
+                anchors.fill: parent
+                background: Loader { sourceComponent: gradientBackground }
+            }
+        }
+
+        Item {
+            Emissions {
+                id: emissionsPage
+                anchors.fill: parent
+                background: Loader { sourceComponent: gradientBackground }
+            }
+        }
+
+        onCurrentIndexChanged: {
+            if ( menuSidebarItem.currentIndex !== swipeView.currentIndex ) {
+                menuSidebarItem.currentIndex = swipeView.currentIndex
+            }
+        }
     }
 
-    Cost {
-        id: costPage
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.left: overlayHeader.visible ? parent.left : drawer.right
-        visible: menuSidebarItem.currentIndex === 1 //Index 1 do MenuItem
-        background: Loader { sourceComponent: gradientBackground }
+    PageIndicator {
+        id: viewIndicator
+
+        count: swipeView.count
+        currentIndex: swipeView.currentIndex
+
+        anchors.bottom: swipeView.bottom
+        anchors.horizontalCenter: swipeView.horizontalCenter
+
+        delegate: Rectangle {
+            implicitWidth: 8
+            implicitHeight: 8
+
+            radius: width / 2
+            color: Style.color.footerSelectedItemColor
+
+            opacity: index === swipeView.currentIndex ? 1 : pressed ? 0.7 : 0.45
+
+            Behavior on opacity {
+                OpacityAnimator {
+                    duration: 100
+                }
+            }
+        }
+
     }
 
-    Appliances {
-        id: appliancesPage
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.left: overlayHeader.visible ? parent.left : drawer.right
-        visible: menuSidebarItem.currentIndex === 2 //Index 2 do MenuItem
-        background: Loader { sourceComponent: gradientBackground }
-    }
-
-    UsageByRooms {
-        id: usageByRoomsPage
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.left: overlayHeader.visible ? parent.left : drawer.right
-        visible: menuSidebarItem.currentIndex === 3 //Index 3 do MenuItem
-        background: Loader { sourceComponent: gradientBackground }
-    }
-
-    Emissions {
-        id: emissionsPage
-        height: parent.height
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.left: overlayHeader.visible ? parent.left : drawer.right
-        visible: menuSidebarItem.currentIndex === 4 //Index 4 do MenuItem
-        background: Loader { sourceComponent: gradientBackground }
-    }
 
     Component {
         id: gradientBackground

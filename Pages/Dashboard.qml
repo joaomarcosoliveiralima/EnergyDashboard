@@ -13,7 +13,7 @@ Page {
         text: qsTr("DASHBOARD")
         font.pixelSize: Qt.application.font.pixelSize * 2
         font.family: fontNunitoLight
-        padding: 20
+        padding: 24
         color: Style.color.textColor
     }
 
@@ -81,15 +81,22 @@ Page {
             }
 
             Rectangle {
+                id: line
                 width: parent.width
                 height: 2
                 color: Style.color.drawerBackgroudColor
                 anchors.top: title.bottom
             }
+            Rectangle {
+                id: contantItem
+                width: parent.width
+                anchors.bottom: parent.bottom
+                anchors.top: line.bottom
+                opacity: 0
+            }
 
         }
     }
-
 
     GridLayout {
         anchors.fill: parent
@@ -104,65 +111,10 @@ Page {
             model: listCharts
             delegate: containerCharts
         }
-
-        //        Rectangle {
-        //            id: weatherRec
-        //            Layout.fillWidth: true
-        //            Layout.fillHeight: true
-        //            color: Style.color.containerColor
-        //            opacity: .6
-        //            radius: 4
-        //        }
-
-        //        Rectangle {
-        //            id: lightingRec
-        //            Layout.fillWidth: true
-        //            Layout.fillHeight: true
-        //            color: Style.color.containerColor
-        //            opacity: .6
-        //            radius: 4
-        //        }
-
-        //        Rectangle {
-        //            id: climateRec
-        //            Layout.fillWidth: true
-        //            Layout.fillHeight: true
-        //            color: Style.color.containerColor
-        //            opacity: .6
-        //            radius: 4
-        //        }
-
-        //        Rectangle {
-        //            id: securityRec
-        //            Layout.fillWidth: true
-        //            Layout.fillHeight: true
-        //            color: Style.color.containerColor
-        //            opacity: .6
-        //            radius: 4
-        //        }
-        //        Rectangle {
-        //            id: energyMonitorRec
-        //            Layout.fillWidth: true
-        //            Layout.fillHeight: true
-        //            color: Style.color.containerColor
-        //            opacity: .6
-        //            radius: 4
-        //        }
-
-        //        Rectangle {
-        //            id: recentActivityRec
-        //            Layout.fillWidth: true
-        //            Layout.fillHeight: true
-        //            color: Style.color.containerColor
-        //            opacity: .6
-        //            radius: 4
-        //        }
     }
 
     MouseArea{
         anchors.fill: parent
-        onClicked: {
-            console.log(appWidth/3)
-        }
+
     }
 }
