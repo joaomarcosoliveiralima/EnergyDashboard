@@ -13,7 +13,7 @@ Page {
         text: qsTr("DASHBOARD")
         font.pixelSize: Qt.application.font.pixelSize * 2
         font.family: fontNunitoLight
-        padding: 24
+        padding: 20
         color: Style.color.textColor
     }
 
@@ -60,6 +60,10 @@ Page {
         Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.minimumHeight: Style.window.heightContentChart
+
+            //            height: Style.window.heightContentChart
+            //            Layout.fillHeight: true
 
             Rectangle {
                 anchors.fill: parent
@@ -99,12 +103,12 @@ Page {
     }
 
     GridLayout {
+        id: gridLayout
         anchors.fill: parent
         anchors.margins: 20
-        implicitHeight: 800
         rowSpacing: 5
         columnSpacing: 5
-        columns: iNumberOfElemenetsH
+        columns: width / 3 < Style.window.heightContentChart ? 2 : 3
         flow:  width > height ? GridLayout.LeftToRight : GridLayout.TopToBottom
 
         Repeater {

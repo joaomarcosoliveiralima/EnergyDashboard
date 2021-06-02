@@ -242,11 +242,18 @@ ApplicationWindow {
         anchors.left: overlayHeader.visible ? parent.left : drawer.right
 
         Item {
+            //            ScrollView {
+            //                anchors.fill: parent
+            //                ScrollBar.vertical.interactive: true
+            //                contentWidth: parent.width
+            //                contentHeight: 1200
+
             Dashboard {
                 id: dashboardPage
                 anchors.fill: parent
                 background: Loader { sourceComponent: gradientBackground }
             }
+            //   }
         }
 
         Item {
@@ -347,30 +354,6 @@ ApplicationWindow {
             }
         }
     }
-
-    //}
-
-    //    footer: TabBar {
-    //        id: tabBar
-    //        currentIndex: swipeView.currentIndex
-
-    //        TabButton {
-    //            text: qsTr("DASHBOARD")
-    //        }
-    //        TabButton {
-    //            text: qsTr("WEATHER")
-    //        }
-    //        TabButton {
-    //            text: qsTr("CLIMATE")
-    //        }
-    //        TabButton {
-    //            text: qsTr("LIGHTS")
-    //        }
-
-    //        background: Rectangle {
-    //            color: Style.color.footerColor
-    //        }
-    //    }
 }
 
 /*##^##

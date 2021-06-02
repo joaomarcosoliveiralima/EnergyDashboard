@@ -12,6 +12,7 @@ QtObject {
         property int sizePerfilCircleIn: 65
         property int sizePerfilCircleOut: 75
         property int maxWidthDrawerItem: 350
+        property int heightContentChart: 330
         property int spaceCell: 5
         property int appWidth: 1300//Screen.width
         property int appHeight: 800//Screen.height
