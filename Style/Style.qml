@@ -22,6 +22,7 @@ QtObject {
         property int heightContentItemMenu: 40
         property int heightItemMenu: 70
         property int sizeMenuIcon: 30
+        property int spaceInGrid: 10
     }
 
     readonly property QtObject color: QtObject {

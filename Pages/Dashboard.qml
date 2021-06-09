@@ -57,17 +57,17 @@ Page {
 
     Component {
         id: containerCharts
+
         Item {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            width: grid.cellWidth - Style.window.spaceInGrid
+            height: grid.cellHeight - Style.window.spaceInGrid
             Layout.minimumHeight: Style.window.heightContentChart
 
-            //            height: Style.window.heightContentChart
-            //            Layout.fillHeight: true
-
             Rectangle {
-                anchors.fill: parent
                 id: backgroundContainer
+                width: grid.cellWidth - Style.window.spaceInGrid
+                height: grid.cellHeight - Style.window.spaceInGrid
+                x: Style.window.spaceCell
                 color: Style.color.containerColor
                 opacity: .6
                 radius: 4
@@ -75,6 +75,7 @@ Page {
 
             Text {
                 id: title
+                x: Style.window.spaceCell
                 text: label
                 padding: 7
                 color: Style.color.textColor
@@ -86,6 +87,7 @@ Page {
 
             Rectangle {
                 id: line
+                x: Style.window.spaceCell
                 width: parent.width
                 height: 2
                 color: Style.color.drawerBackgroudColor
@@ -93,6 +95,7 @@ Page {
             }
             Rectangle {
                 id: contantItem
+                x: Style.window.spaceCell
                 width: parent.width
                 anchors.bottom: parent.bottom
                 anchors.top: line.bottom
@@ -102,23 +105,37 @@ Page {
         }
     }
 
-    GridLayout {
-        id: gridLayout
-        anchors.fill: parent
-        anchors.margins: 20
-        rowSpacing: 5
-        columnSpacing: 5
-        columns: width / 3 < Style.window.heightContentChart ? 2 : 3
-        flow:  width > height ? GridLayout.LeftToRight : GridLayout.TopToBottom
 
-        Repeater {
+    ScrollView {
+        anchors.fill: parent
+        GridView {
+            id: grid
+            anchors.fill: parent
+            cellWidth: getCellWidth()
+            cellHeight: Style.window.heightContentChart
             model: listCharts
             delegate: containerCharts
+            focus: true
+
+            //        ScrollBar.vertical: ScrollBar { }
         }
     }
 
     MouseArea{
         anchors.fill: parent
 
+        onClicked: {
+
+        }
+    }
+
+    function getCellWidth(){
+        if ((grid.width) < Style.window.heightContentChart * 2){
+            return grid.width;
+        }else if ((grid.width / 3) < Style.window.heightContentChart){
+            return (grid.width / 2)
+        }else{
+            return (grid.width / 3);
+        }
     }
 }
