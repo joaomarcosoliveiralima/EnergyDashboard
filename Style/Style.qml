@@ -14,7 +14,7 @@ QtObject {
         property int maxWidthDrawerItem: 350
         property int heightContentChart: 330
         property int spaceCell: 5
-        property int appWidth: 1300//Screen.width
+        property int appWidth: 400//1300//Screen.width
         property int appHeight: 800//Screen.height
         property int toolBarHeight: 68//Screen.height
         property int dividerHeight: 2//Screen.height
